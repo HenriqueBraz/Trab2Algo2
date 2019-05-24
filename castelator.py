@@ -5,28 +5,35 @@ Created on Thu May 23 17:28:39 2019
 
 @author: henrique
 """
-from math import trunc
-import collections
-import time
 
-def leitura_pergaminho(arquivo):
-    arq = open(arquivo, 'r')
-    pergaminho = arq.readlines()
-    return pergaminho
+class Castelator(object):
+    
+    
+    def __init__(self):
+    
+        self.tamanho_exercito_0 = ''
+        self.total_castelos = ''
+        self.estradas_regiao = ''
+    
 
-
-
-
-if __name__ == "__main__":
+    def leitura_pergaminho(self,arquivo):
+        """
+        Método que lê o arquivo inicial
+        param arquivo: arquivo inicial a ser lido
+        return: retorna uma lista com os dados do arquivo
+        """
+        arq = open(arquivo, 'r')
+        pergaminho = arq.readlines()
+        return pergaminho
     
-    
-    
-    inicio=time.time()
-
-    pergaminho = leitura_pergaminho('/home/henrique/algo2/TrabAlgo2/casos/casoteste.txt')
-    
-    
-    
-    fim=time.time()
-    
-    print("Tempo total: {} segundos".format(fim-inicio))
+        
+    def separa_dados(self,pergaminho):
+        """
+        Função que separa o tamanho do exercito
+        inicial, o total de castelos vizinhos e
+        o total de estradas da região
+        """
+        a = pergaminho[0].split()
+        self.tamanho_exercito_0 = a[0]
+        self.total_castelos = a[1]
+        self.estradas_regiao = a[2]
