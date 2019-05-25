@@ -5,6 +5,7 @@ Created on Thu May 23 17:28:39 2019
 
 @author: henrique
 """
+import collections
 
 class Castelator(object):
     
@@ -14,7 +15,6 @@ class Castelator(object):
         self.tamanho_exercito_0 = ''
         self.total_castelos = ''
         self.estradas_regiao = ''
-    
 
     def leitura_pergaminho(self,arquivo):
         """
@@ -29,7 +29,7 @@ class Castelator(object):
         
     def separa_dados(self,pergaminho):
         """
-        Função que separa o tamanho do exercito
+        Método que separa o tamanho do exercito
         inicial, o total de castelos vizinhos e
         o total de estradas da região
         """
@@ -37,3 +37,34 @@ class Castelator(object):
         self.tamanho_exercito_0 = a[0]
         self.total_castelos = a[1]
         self.estradas_regiao = a[2]
+        
+        
+    def conta_guarnição(self,pergaminho,total_castelos):
+        """
+        Método que monta um OrderedDict com o 
+        numero do castelo e a guarnição
+        param pergaminho: lista contendo o pergaminho lido
+        param total_castelos: dicionario ordenado por {'numero do castelo':'tamanho da guarnição'}
+        retun: 
+        """
+        castelo_e_guarnicao = collections.OrderedDict()
+        tamanho = int(total_castelos) + 1
+        for i in range(1,tamanho):    
+              temp = pergaminho[i].split()
+              castelo_e_guarnicao[temp[0]] = temp[1]
+
+        return(castelo_e_guarnicao)    
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
