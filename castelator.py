@@ -32,6 +32,7 @@ class Castelator(object):
         Método que separa o tamanho do exercito
         inicial, o total de castelos vizinhos e
         o total de estradas da região
+        return: void
         """
         a = pergaminho[0].split()
         self.tamanho_exercito_0 = a[0]
@@ -45,7 +46,7 @@ class Castelator(object):
         numero do castelo e a guarnição
         param pergaminho: lista contendo o pergaminho lido
         param total_castelos: dicionario ordenado por {'numero do castelo':'tamanho da guarnição'}
-        retun: 
+        return: OrderedDict
         """
         castelo_e_guarnicao = collections.OrderedDict()
         tamanho = int(total_castelos) + 1
@@ -53,7 +54,26 @@ class Castelator(object):
               temp = pergaminho[i].split()
               castelo_e_guarnicao[temp[0]] = temp[1]
 
-        return(castelo_e_guarnicao)    
+        return(castelo_e_guarnicao)
+        
+        
+    def conta_estradas(self,pergaminho,total_castelos,estradas_regiao):
+        """
+        Método que monta uma lista com o 
+        numero de estradas, ordenadas como estão no pergaminho
+        param pergaminho: lista contendo o pergaminho lido
+        param total_castelos: dicionario ordenado por {'numero do castelo':'tamanho da guarnição'}
+        param estradas_região: variável contendo o numero de estradas da região
+        retun: list
+        """
+        estradas = []
+        inicio = int(total_castelos) + 1
+        tamanho = (int(len(pergaminho))) - (int(total_castelos) + 1)
+        for i in range(tamanho):    
+              temp = pergaminho[inicio].split()
+              estradas.append(temp)
+              inicio +=1
+        return(estradas)
             
         
         

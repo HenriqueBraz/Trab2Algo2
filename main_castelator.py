@@ -31,6 +31,12 @@ if __name__ == "__main__":
     print('castelo_e_guarnicao')
     print(castelo_e_guarnicao)
     print('\n')
+    
+    estradas = c.conta_estradas(pergaminho, c.total_castelos,c.estradas_regiao)
+    print('estradas')
+    print(estradas)
+    print('n')
+    
               
         
     fim=time.time()
