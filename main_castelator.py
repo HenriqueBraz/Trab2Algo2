@@ -14,7 +14,7 @@ if __name__ == "__main__":
     
     
     c = Castelator()
-    pergaminho = c.leitura_pergaminho('/home/henrique/Trab2Algo2/casos-t2/casoteste.txt')
+    pergaminho = c.leitura_pergaminho('/home/henrique/Trab2Algo2/casos-t2/caso60.txt')
     print('pergaminho:')
     print(pergaminho)
     print('\n')

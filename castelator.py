@@ -71,10 +71,18 @@ class Castelator(object):
         inicio = int(total_castelos) + 1
         tamanho = (int(len(pergaminho))) - (int(total_castelos) + 1)
         temp3 = []
+        print(tamanho)
         for i in range((tamanho - 1)):
               temp = pergaminho[inicio].split()
               temp2 = pergaminho[inicio + 1].split()
-              if temp[0] != temp2[0]:
+              print(temp)
+              if i == (tamanho -2):
+                   temp3.append(temp) 
+                   estradas.append(temp3)
+                   temp = pergaminho[inicio + 1].split()
+                   estradas.append(temp)
+                   
+              elif temp[0] != temp2[0]:
                   if temp3 != []:
                      temp3.append(temp) 
                      estradas.append(temp3)
@@ -82,17 +90,10 @@ class Castelator(object):
                      temp3 = []
                   else:  
                      estradas.append(temp)
-                     inicio +=1                     
-                     
-              elif i == (tamanho -2):
-                   temp3.append(temp) 
-                   estradas.append(temp3)
-                   temp = pergaminho[inicio + 1].split()
-                   estradas.append(temp)
-                   
+                     inicio +=1       
               else:
                    temp3.append(temp)
-                   inicio +=1
+                   inicio +=1 
                    
         return(estradas)
         
