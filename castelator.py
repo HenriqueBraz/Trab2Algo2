@@ -71,11 +71,9 @@ class Castelator(object):
         inicio = int(total_castelos) + 1
         tamanho = (int(len(pergaminho))) - (int(total_castelos) + 1)
         temp3 = []
-        print(tamanho)
         for i in range((tamanho - 1)):
               temp = pergaminho[inicio].split()
               temp2 = pergaminho[inicio + 1].split()
-              print(temp)
               if i == (tamanho -2):
                    temp3.append(temp) 
                    estradas.append(temp3)
@@ -97,16 +95,31 @@ class Castelator(object):
                    
         return(estradas)
         
-                
         
     def grafo(self,total_castelos,estradas):
-        grafo = collections.OrderedDict()
+        """
+        Método que retorna um dicionario contendo chave
+        como nunero do castelo e valor como os caminhos
+        possíveis daquele castelo
+        param total_castelos: string contendo o total de castelos
+        param entradas: lista contendo as listas dos caminhos,
+        agrupadas por ordem do castelo que saem (0,1,2,etc)
+        return: um dicionario que representa o grafo do pergaminho
+        """
+        #grafo = collections.OrderedDict()
+        grafo = {}
+        lista = []
         for i in range(len(estradas)):
-           print(estradas[i][0])
-           
-           
-                    
-        return grafo
+           temp = (estradas[i][0][0])
+           if temp not in lista:
+               lista.append(temp)
+               
+        lista_ordenada = sorted(lista)
+        for i in range(len(lista_ordenada)):
+            temp = (estradas[i][0][0])
+            grafo[int(temp)] = estradas[i]
+            
+        return(grafo)
             
             
             

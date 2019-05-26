@@ -18,6 +18,7 @@ if __name__ == "__main__":
     print('pergaminho:')
     print(pergaminho)
     print('\n')
+    
     c.separa_dados(pergaminho)
     print('c.tamanho_exercito_0')
     print(c.tamanho_exercito_0)
