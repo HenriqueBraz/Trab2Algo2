@@ -49,6 +49,7 @@ class Castelator(object):
         return: OrderedDict
         """
         castelo_e_guarnicao = collections.OrderedDict()
+        castelo_e_guarnicao[0] = self.tamanho_exercito_0
         tamanho = int(total_castelos) + 1
         for i in range(1,tamanho):    
               temp = pergaminho[i].split()
@@ -59,8 +60,8 @@ class Castelator(object):
         
     def conta_estradas(self,pergaminho,total_castelos,estradas_regiao):
         """
-        Método que monta uma lista com o 
-        numero de estradas, ordenadas como estão no pergaminho
+        Método que monta uma lista com listas com os 
+        numeros de estradas, agrupadas por ordem do castelo que saem (0,1,2,etc)
         param pergaminho: lista contendo o pergaminho lido
         param total_castelos: dicionario ordenado por {'numero do castelo':'tamanho da guarnição'}
         param estradas_região: variável contendo o numero de estradas da região
@@ -69,11 +70,44 @@ class Castelator(object):
         estradas = []
         inicio = int(total_castelos) + 1
         tamanho = (int(len(pergaminho))) - (int(total_castelos) + 1)
-        for i in range(tamanho):    
+        temp3 = []
+        for i in range((tamanho - 1)):
               temp = pergaminho[inicio].split()
-              estradas.append(temp)
-              inicio +=1
+              temp2 = pergaminho[inicio + 1].split()
+              if temp[0] != temp2[0]:
+                  if temp3 != []:
+                     temp3.append(temp) 
+                     estradas.append(temp3)
+                     inicio +=1
+                     temp3 = []
+                  else:  
+                     estradas.append(temp)
+                     inicio +=1                     
+                     
+              elif i == (tamanho -2):
+                   temp3.append(temp) 
+                   estradas.append(temp3)
+                   temp = pergaminho[inicio + 1].split()
+                   estradas.append(temp)
+                   
+              else:
+                   temp3.append(temp)
+                   inicio +=1
+                   
         return(estradas)
+        
+                
+        
+    def grafo(self,total_castelos,estradas):
+        grafo = collections.OrderedDict()
+        for i in range(len(estradas)):
+           print(estradas[i][0])
+           
+           
+                    
+        return grafo
+            
+            
             
         
         

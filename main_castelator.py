@@ -15,7 +15,7 @@ if __name__ == "__main__":
     
     c = Castelator()
     pergaminho = c.leitura_pergaminho('/home/henrique/Trab2Algo2/casos-t2/casoteste.txt')
-    print('pergaminho')
+    print('pergaminho:')
     print(pergaminho)
     print('\n')
     c.separa_dados(pergaminho)
@@ -35,7 +35,13 @@ if __name__ == "__main__":
     estradas = c.conta_estradas(pergaminho, c.total_castelos,c.estradas_regiao)
     print('estradas')
     print(estradas)
-    print('n')
+    print('\n')
+    
+        
+    grafo = c.grafo(c.total_castelos,estradas)
+    print('grafo')
+    print(grafo)
+    print('\n')
     
               
         
