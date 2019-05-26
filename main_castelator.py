@@ -14,7 +14,7 @@ if __name__ == "__main__":
     
     
     c = Castelator()
-    pergaminho = c.leitura_pergaminho('/home/henrique/Trab2Algo2/casos-t2/casoteste.txt')
+    pergaminho = c.leitura_pergaminho('/home/henrique/Trab2Algo2/casos-t2/caso30.txt')
     print('pergaminho:')
     print(pergaminho)
     print('\n')
@@ -44,7 +44,11 @@ if __name__ == "__main__":
     print(grafo)
     print('\n')
     
-              
+   # grafo_pronto = c.arruma_grafo(grafo)
+   # print('grafo_pronto')
+   # print(grafo_pronto)
+   # print('\n')
+          
         
     fim=time.time()
     print("Tempo total: {} segundos".format(fim-inicio))

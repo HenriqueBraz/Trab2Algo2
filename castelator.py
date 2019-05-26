@@ -49,6 +49,7 @@ class Castelator(object):
         return: OrderedDict
         """
         castelo_e_guarnicao = collections.OrderedDict()
+        #castelo_e_guarnicao = {}
         castelo_e_guarnicao['0'] = self.tamanho_exercito_0
         tamanho = int(total_castelos) + 1
         for i in range(1,tamanho):    
@@ -56,6 +57,7 @@ class Castelator(object):
               castelo_e_guarnicao[temp[0]] = temp[1]
 
         return(castelo_e_guarnicao)
+        
         
         
     def conta_estradas(self,pergaminho,total_castelos,estradas_regiao):
@@ -74,11 +76,16 @@ class Castelator(object):
         for i in range((tamanho - 1)):
               temp = pergaminho[inicio].split()
               temp2 = pergaminho[inicio + 1].split()
+              print(temp)
+              print(i)
+              print(tamanho -2)
               if i == (tamanho -2):
-                   temp3.append(temp) 
-                   estradas.append(temp3)
-                   temp = pergaminho[inicio + 1].split()
-                   estradas.append(temp)
+                  if temp[0] == temp2[0]:
+                      temp3.append(temp2) 
+                      estradas.append(temp3)
+                  else:
+                      temp3.append(temp)
+                      estradas.append(temp2)
                    
               elif temp[0] != temp2[0]:
                   if temp3 != []:
@@ -93,9 +100,12 @@ class Castelator(object):
                    temp3.append(temp)
                    inicio +=1 
                    
-        return(estradas)
+        return(estradas)     
+    
         
         
+        
+    
     def grafo(self,castelo_e_guarnicao,estradas):
         """
         Método que retorna um dicionario contendo chave
@@ -118,12 +128,25 @@ class Castelator(object):
             temp = (estradas[i][0][0])
             temp2 = lista_valores[int(temp)]
             temp3  = estradas[i]
-            castelo_e_guarnicao[str(temp)] = [str(temp2)],[temp3]
+            castelo_e_guarnicao[str(temp)] = [temp2],temp3
             
         return(castelo_e_guarnicao)
             
             
-            
+    def arruma_grafo(self,grafo):
+        
+       lista_chaves = list(grafo.keys())
+       lista_valores = list(grafo.values())
+       
+       print(lista_valores)
+       print('\n')
+       print(lista_chaves)
+       print('\n')
+       
+       for i in range(len(lista_chaves)):
+           
+           print(lista_valores[i][0])
+           print(lista_valores[i][1])
         
         
         
