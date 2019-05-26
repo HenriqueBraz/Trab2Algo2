@@ -14,7 +14,7 @@ if __name__ == "__main__":
     
     
     c = Castelator()
-    pergaminho = c.leitura_pergaminho('/home/henrique/Trab2Algo2/casos-t2/caso60.txt')
+    pergaminho = c.leitura_pergaminho('/home/henrique/Trab2Algo2/casos-t2/casoteste.txt')
     print('pergaminho:')
     print(pergaminho)
     print('\n')
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     print('\n')
     
         
-    grafo = c.grafo(c.total_castelos,estradas)
+    grafo = c.grafo(castelo_e_guarnicao,estradas)
     print('grafo')
     print(grafo)
     print('\n')
