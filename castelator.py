@@ -76,11 +76,9 @@ class Castelator(object):
         for i in range((tamanho - 1)):
               temp = pergaminho[inicio].split()
               temp2 = pergaminho[inicio + 1].split()
-              print(temp)
-              print(i)
-              print(tamanho -2)
               if i == (tamanho -2):
                   if temp[0] == temp2[0]:
+                      temp3.append(temp)
                       temp3.append(temp2) 
                       estradas.append(temp3)
                   else:
@@ -100,8 +98,9 @@ class Castelator(object):
                    temp3.append(temp)
                    inicio +=1 
                    
-        return(estradas)     
-    
+        return(estradas)
+        
+        
         
         
         
@@ -118,35 +117,78 @@ class Castelator(object):
         na ordem: [numero do castelo]:[guanição],[caminhos que saem do castelo]
         """
         lista_valores = list(castelo_e_guarnicao.values())
+        lista_chaves = list(castelo_e_guarnicao.keys())
         lista = []
         for i in range(len(estradas)):
            temp = (estradas[i][0][0])
            if temp not in lista:
                lista.append(temp)
         
+        li1 = lista
+        li2 = lista_chaves
+        li_dif = [i for i in li1 + li2 if i not in li1 or i not in li2] 
+
         for i in range(len(lista)):
             temp = (estradas[i][0][0])
             temp2 = lista_valores[int(temp)]
             temp3  = estradas[i]
-            castelo_e_guarnicao[str(temp)] = [temp2],temp3
+            castelo_e_guarnicao[str(temp)] = temp2,temp3
+            
+        for i in range(len(li_dif)):
+            temp = li_dif[i]
+            temp2 = lista_valores[int(temp)]
+            temp3 = []
+            castelo_e_guarnicao[str(temp)] = temp2,temp3 
+            
+
             
         return(castelo_e_guarnicao)
             
             
-    def arruma_grafo(self,grafo):
-        
+    def arruma_grafo(self,grafo,estradas):
+       """
+        Método que incrementa e ordena os caminhos que estão faltando
+        no grafo anterios
+        param grafo: OrderedDict contendo o grafo
+        param entradas: lista contendo as listas dos caminhos,
+        agrupadas por ordem do castelo que saem (0,1,2,etc)
+        return: um dicionario que representa o grafo do pergaminho, 
+        na ordem: [numero do castelo]:[guanição],[caminhos que saem do castelo]
+        """ 
        lista_chaves = list(grafo.keys())
        lista_valores = list(grafo.values())
-       
-       print(lista_valores)
-       print('\n')
-       print(lista_chaves)
-       print('\n')
-       
+       temp = ''
+       temp3 = []
+       temp2 = ''
        for i in range(len(lista_chaves)):
-           
-           print(lista_valores[i][0])
-           print(lista_valores[i][1])
+           if lista_valores[i][1] == [] or (len(lista_valores[i][1])) == 2:
+               temp3 = []
+               for j in range(len(estradas)):
+                   for k in range(len(estradas[j])):
+                       if lista_chaves[i] in (estradas[j][k]):
+                           if (len(estradas[j][k])) == 1:
+                               temp = lista_chaves[i]
+                               x = estradas[0]
+                               if x[0] != i:
+                                   temp3 += [[x[1],x[0]]]
+                               else:
+                                   temp3 += [estradas[0]]
+                               temp2 = grafo[str(temp)]
+                               grafo[str(temp)] = temp2[0],temp3
+                           else:    
+                               temp = lista_chaves[i]
+                               x = estradas[j][k]
+                               if x[0] != i:
+                                   temp3 += [[x[1],x[0]]]
+                               else:    
+                                   temp3 += [estradas[j][k]]
+                               temp2 = grafo[str(temp)]
+                               grafo[str(temp)] = temp2[0],temp3
+                           
+       return(grafo)                 
+               
+                    
+          
         
         
         
