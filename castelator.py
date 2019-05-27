@@ -15,6 +15,8 @@ class Castelator(object):
         self.tamanho_exercito_0 = ''
         self.total_castelos = ''
         self.estradas_regiao = ''
+        self.total_conquistados = 0
+        self.grafos_estrada = []
 
     def leitura_pergaminho(self,arquivo):
         """
@@ -190,7 +192,32 @@ class Castelator(object):
                     
           
         
-        
+    def test(self, grafo, castelo, castelo_origem):
+        conquista = 1
+        index = 0
+        self.tamanho_exercito_0 = int(self.tamanho_exercito_0) - 50
+        lista_grafo = grafo
+        while(conquista == 1):
+            if(int(lista_grafo[castelo][1][index][1]) == castelo_origem):
+                index = index+1
+                idx_castelo = 0
+            else:
+                idx_castelo = 1
+            castelo_origem = castelo
+            primeiro_castelo = int(lista_grafo[castelo][1][index][idx_castelo])
+            castelo_a_conquistar = lista_grafo[primeiro_castelo]
+            tropas_castelo_a_conquistar = int(castelo_a_conquistar[0])
+            if(2*tropas_castelo_a_conquistar < self.tamanho_exercito_0 and primeiro_castelo not in self.grafos_estrada):
+                print(castelo_a_conquistar)
+                self.total_conquistados = self.total_conquistados+1
+                self.grafos_estrada.append(primeiro_castelo)
+                self.test(lista_grafo, primeiro_castelo, castelo_origem)
+                index = index+1
+            else:
+                conquista = 0
+
+
+
         
         
         
