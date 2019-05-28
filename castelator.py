@@ -186,7 +186,7 @@ class Castelator(object):
                                temp = lista_chaves[i]
                                x = estradas[j]
                                if x[0] != i:
-                                   temp3 += x[1],x[0]     
+                                   temp3 += [[x[1],x[0]]]    
                                else:
                                    temp3 += [estradas[j][k]]
                                temp2 = grafo[str(temp)]
