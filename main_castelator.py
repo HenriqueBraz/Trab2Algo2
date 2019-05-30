@@ -14,7 +14,7 @@ if __name__ == "__main__":
     
     
     c = Castelator()
-    pergaminho = c.leitura_pergaminho('/home/henrique/Trab2Algo2/casos-t2/casoteste.txt')
+    pergaminho = c.leitura_pergaminho('/home/henrique/Trab2Algo2/casos-t2/caso60.txt')
     print('pergaminho:')
     print(pergaminho)
     print('\n')
@@ -44,14 +44,14 @@ if __name__ == "__main__":
     print(grafo)
     print('\n')
     
-    grafo_pronto = c.arruma_grafo(grafo,estradas)
+    c.grafo_pronto = c.arruma_grafo(grafo,estradas)
     print('grafo_pronto')
-    print(grafo_pronto)
+    print(c.grafo_pronto)
     print('\n')
 
-    #c.test(list(grafo.values()), 0, 0)
+    print('castelos conquistados:\n')
+    print(c.conquistator())
 
-    #print(c.total_conquistados)
         
     fim=time.time()
     print("Tempo total: {} segundos".format(fim-inicio))

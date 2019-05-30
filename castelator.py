@@ -17,6 +17,11 @@ class Castelator(object):
         self.estradas_regiao = ''
         self.total_conquistados = 0
         self.grafos_estrada = []
+        self.grafo_pronto = {}
+        self.vitoria = 0
+        self.castelo_conquistado = collections.OrderedDict()
+        self.chave = 0
+        
 
     def leitura_pergaminho(self,arquivo):
         """
@@ -104,14 +109,11 @@ class Castelator(object):
         return(estradas)
         
         
-        
-        
-        
     
     def grafo(self,castelo_e_guarnicao,estradas):
         """
         Método que retorna um dicionario contendo chave
-        como nunero do castelo e valor como os caminhos
+        como numero do castelo e valor como os caminhos
         possíveis daquele castelo
         param castelo_e_guarnicao: OrderedDict contendo os castelos e guarniçoes
         param entradas: lista contendo as listas dos caminhos,
@@ -200,36 +202,49 @@ class Castelator(object):
                                    temp3 += [estradas[j][k]]
                                temp2 = grafo[str(temp)]
                                grafo[str(temp)] = temp2[0],temp3
-                              
-                           
+                                   
        return(grafo)                 
                
                     
           
         
-    def test(self, grafo, castelo, castelo_origem):
-        conquista = 1
-        index = 0
-        self.tamanho_exercito_0 = int(self.tamanho_exercito_0) - 50
-        lista_grafo = grafo
-        while(conquista == 1):
-            if(int(lista_grafo[castelo][1][index][1]) == castelo_origem):
-                index = index+1
-                idx_castelo = 0
-            else:
-                idx_castelo = 1
-            castelo_origem = castelo
-            primeiro_castelo = int(lista_grafo[castelo][1][index][idx_castelo])
-            castelo_a_conquistar = lista_grafo[primeiro_castelo]
-            tropas_castelo_a_conquistar = int(castelo_a_conquistar[0])
-            if(2*tropas_castelo_a_conquistar < self.tamanho_exercito_0 and primeiro_castelo not in self.grafos_estrada):
-                print(castelo_a_conquistar)
-                self.total_conquistados = self.total_conquistados+1
-                self.grafos_estrada.append(primeiro_castelo)
-                self.test(lista_grafo, primeiro_castelo, castelo_origem)
-                index = index+1
-            else:
-                conquista = 0
+    def conquistator(self):
+        """
+        Método que retorna um OrderedDict com a lista
+        de castelos conquistados
+        na ordem: [numero do castelo]:[guanição restante (sobreviventes)]
+        + piadas de gosto duvidoso...
+        """ 
+        while self.chave < int(self.total_castelos):
+            self.chave +=1
+            guarda_atual = (int(self.tamanho_exercito_0) - 50)
+            castelo_a_conquistar = int(self.grafo_pronto[str(self.chave)][0])
+            if castelo_a_conquistar <= guarda_atual - (2 * castelo_a_conquistar):
+                print('atacaaaar:')
+                guarda_atual =  guarda_atual - (2 * castelo_a_conquistar)
+                if guarda_atual - 50 >= 100:
+                    print('ataque bem sucedido, preparando planos para o próximo ataque.Mas antes...')
+                    temp = int(self.grafo_pronto[str(self.chave)][0])
+                    temp = guarda_atual
+                    temp = temp -50
+                    print('atualizando a guarnição do castelo conquistado...vamo, vamo, se mexe, cambada!')
+                    self.grafo_pronto[str(self.chave)] = [str(temp)] 
+                    self.castelo_conquistado[str(self.chave)] = temp
+                    self.tamanho_exercito_0 = temp
+                    self.chave +=1
+                    self.conquistator()
+                else:
+                    print('não atacar, cooorre que não, sebo nas canelas!!!...\n')
+                    guarda_atual =  guarda_atual + (2 * castelo_a_conquistar)
+                    self.chave +=1
+                               
+        return(self.castelo_conquistado)
+        
+        
+        
+        
+        
+       
 
 
 
