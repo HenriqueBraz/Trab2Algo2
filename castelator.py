@@ -204,8 +204,6 @@ class Castelator(object):
                                grafo[str(temp)] = temp2[0],temp3
                                    
        return(grafo)                 
-               
-                    
           
         
     def conquistator(self):
@@ -235,7 +233,6 @@ class Castelator(object):
                 else:
                     print('não atacar, cooorre que não deu, sebo nas canelas!!!...\n')
                     guarda_atual =  guarda_atual + (2 * castelo_a_conquistar)
-                    continue
                                
         return(self.castelo_conquistado)
         
