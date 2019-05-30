@@ -223,7 +223,7 @@ class Castelator(object):
                 print('atacaaaar:')
                 guarda_atual =  guarda_atual - (2 * castelo_a_conquistar)
                 if guarda_atual - 50 >= 100:
-                    print('ataque bem sucedido, preparando planos para o próximo ataque.Mas antes...')
+                    print('ataque bem sucedido, preparando planos para o próximo ataque. Mas antes...')
                     temp = int(self.grafo_pronto[str(self.chave)][0])
                     temp = guarda_atual
                     temp = temp -50
@@ -231,12 +231,11 @@ class Castelator(object):
                     self.grafo_pronto[str(self.chave)] = [str(temp)] 
                     self.castelo_conquistado[str(self.chave)] = temp
                     self.tamanho_exercito_0 = temp
-                    self.chave +=1
                     self.conquistator()
                 else:
-                    print('não atacar, cooorre que não, sebo nas canelas!!!...\n')
+                    print('não atacar, cooorre que não deu, sebo nas canelas!!!...\n')
                     guarda_atual =  guarda_atual + (2 * castelo_a_conquistar)
-                    self.chave +=1
+                    continue
                                
         return(self.castelo_conquistado)
         
